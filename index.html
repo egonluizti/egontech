@@ -1,142 +1,328 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EgonTech: Onde ideias se conectam e soluções acontecem.</title>
-  
-  <!-- Font Awesome para ícones -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EgonTech: Soluções em TI, Segurança e Automação</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f0f0f0; }
-    header { background: #1a1a1a; color: #fff; padding: 20px; text-align: center; }
-    nav { background: #333; padding: 10px; text-align: center; }
-    nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    .section { padding: 40px; background: #fff; margin: 20px auto; width: 90%; max-width: 900px; border-radius: 10px; }
-    h2 { color: #333; }
-    footer { background: #1a1a1a; color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+    <style>
+        /* Variáveis de Cores */
+        :root {
+            --primary-color: #007bff; /* Azul vibrante para destaque */
+            --secondary-color: #28a745; /* Verde para sucesso/CTA */
+            --dark-bg: #ffffff;
+            --light-text: #f8f9fa;
+            --section-bg: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
 
-    /* Botões flutuantes */
-    .float-buttons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 100;
-    }
-    .float-buttons a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      color: #fff;
-      text-decoration: none;
-      font-size: 24px;
-      transition: background 0.3s;
-    }
-    .float-buttons a:hover { background: #555; }
+        /* RESET E TIPOGRAFIA */
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f0f4f8; 
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        h1, h2 { color: var(--dark-bg); font-weight: 700; }
+        h2 { border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 30px; }
 
-    /* Cores específicas para WhatsApp e Instagram */
-    .whatsapp { background: #25D366; color: #fff; }
-    .instagram { background: #C13584; color: #fff; }
-  </style>
+        /* HEADER E NAVEGAÇÃO */
+        header { 
+            background: #ffffff; 
+            color: #333; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom: 1px solid #ddd;
+        }
+        header h1 { 
+            color: var(--primary-color); 
+            font-size: 2.5em; 
+            margin-bottom: 5px; 
+        }
+
+        nav { 
+            background: var(--primary-color); 
+            padding: 10px 0; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        nav a { 
+            color: var(--light-text); 
+            margin: 0 15px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover { 
+            background: rgba(255, 255, 255, 0.2); 
+        }
+
+        /* SEÇÕES DE CONTEÚDO */
+        .section { 
+            padding: 50px 20px; 
+            background: var(--section-bg); 
+            margin: 30px auto; 
+            width: 95%; 
+            max-width: 1000px; 
+            border-radius: 12px; 
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .section-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .text-content {
+            flex: 1;
+            padding-right: 35px; 
+            padding-left: 20px; 
+        }
+
+        .image-gallery {
+            display: flex;
+            gap: 10px;
+            max-width: 400px; 
+            padding-left: 15px; 
+        }
+        .image-gallery img { 
+            width: calc(50% - 5px); 
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* HERO SECTION */
+        #hero {
+            background: linear-gradient(135deg, #3a3a3a 0%, #1a1a1a 100%);
+            color: var(--light-text);
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 0;
+            margin: 0;
+            box-shadow: none;
+        }
+        #hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* BOTÃO CTA PRINCIPAL */
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+        }
+        .cta-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* ICONES DE SERVIÇOS */
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+        
+    /* FOOTER */
+        footer { 
+            background: var(--dark-bg); 
+            color: var(--primary-color); 
+            text-align: center; 
+            padding: 30px 20px; 
+            margin-top: 0; 
+        }
+
+        /* BOTÕES FLUTUANTES */
+        .float-buttons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000; 
+        }
+        .float-buttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 28px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .float-buttons a:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        .whatsapp { background: #25D366; }
+        .instagram { background: #C13584; }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            nav a { margin: 0 10px; font-size: 0.9em; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; }
+
+            .section-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .text-content {
+                padding-right: 0; 
+                padding-left: 0;  
+                margin-bottom: 20px;
+            }
+            .image-gallery {
+                max-width: 100%;
+                justify-content: center;
+                padding-left: 0; 
+            }
+            .image-gallery img {
+                 width: 48%; 
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>EgonTech: Onde ideias se conectam e soluções acontecem.</h1>
-    <p>Soluções completas para sua residência ou empresa.</p>
-  </header>
+    <header>
+        <h1>EgonTech</h1>
+        <p>Onde ideias se conectam e soluções acontecem.</p>
+    </header>
 
-  <nav>
-    <a href="#segurança">Segurança</a>
-    <a href="#rede">Cabeamento Estruturado</a>
-    <a href="#comandos">Tecnologia e Automação</a>
-    <a href="#cameras alarmes">Câmeras de Segurança e Alarmes</a>
-    <a href="#contato">Contato</a>
-  </nav>
+    <nav>
+        <a href="#segurança">Segurança</a>
+        <a href="#rede">Rede</a>
+        <a href="#comandos">Automação</a>
+        <a href="#cameras">Câmeras/Alarmes</a>
+        <a href="#contato">Contato</a>
+    </nav>
 
-  <div id="segurança" class="section">
-    <h2>Segurança</h2>
-    <div style="display: flex; gap: 10px;">
-      <img src="Segurança Digital.jpeg" alt="Segurança" style="width: 50%; border-radius:10px;" />
-      <img src="Segurança Online.jpg" alt="Segurança" style="width: 50%; border-radius:10px;" />
+    <div id="hero">
+        <h2>Proteja seu Futuro Digital e Físico.</h2>
+        <p>A EgonTech oferece infraestrutura de TI, segurança e automação que garantem a tranquilidade e a eficiência que sua casa ou empresa merecem.</p>
+        <a href="https://wa.me/5519974158351" class="cta-button" target="_blank">
+            <i class="fab fa-whatsapp"></i> Fale Conosco Agora!
+        </a>
     </div>
-    <p>Defendemos seus dados com tecnologia de ponta em cibersegurança, proteção antivírus e controle inteligente de acessos.</p>
-  </div>
 
-  <div id="rede" class="section">
-    <h2>Cabeamento Estruturado</h2>
-    <div style="display: flex; gap: 10px;">
-      <img src="Cabeamento Estruturado.jpeg" alt="rede" style="width: 50%; border-radius:10px;" />
-      <img src="Projeto Rede.jpg" alt="rede" style="width: 50%; border-radius:10px;" />
+    <div id="segurança" class="section">
+        <h2><i class="fas fa-shield-alt service-icon"></i> Segurança Cibernética: Proteja Seus Ativos</h2>
+        <div class="section-content">
+            <div class="text-content">
+                <p><strong>Sua tranquilidade é nossa prioridade.</strong> Implementamos **defesas digitais** de nível empresarial para proteger sua empresa ou residência contra *ransomware*, invasões e perda de dados críticos. Oferecemos **antivírus de ponta** e **controle inteligente de acessos**, garantindo a continuidade do seu negócio e a **preservação do seu patrimônio digital**.</p>
+            </div>
+            <div class="image-gallery">
+                <img src="Segurança Digital.jpeg" alt="Segurança Digital" />
+                <img src="Segurança Online.jpg" alt="Cibersegurança" />
+            </div>
+        </div>
     </div>
-    <p>Conectividade de alta performance com cabeamento estruturado, fibra óptica e configuração avançada de equipamentos de rede.</p>
-  </div>
 
-  <div id="comandos" class="section">
-    <h2>Tecnologia e Automação</h2>
-    <div style="display: flex; gap: 10px;">
-      <img src="Tecnologia.jpg" alt="comandos" style="width: 50%; border-radius:10px;" />
-      <img src="Automação.png" alt="comandos" style="width: 50%; border-radius:10px;" />
+    <div id="rede" class="section">
+        <h2><i class="fas fa-network-wired service-icon"></i> Cabeamento Estruturado e Redes</h2>
+        <div class="section-content">
+            <div class="image-gallery">
+                <img src="Cabeamento Estruturado.jpeg" alt="Cabeamento" />
+                <img src="Projeto Rede.jpg" alt="Projeto de Rede" />
+            </div>
+            <div class="text-content">
+                <p>Sua conectividade sem falhas. Projetamos e implementamos **infraestrutura de rede de alta performance**, incluindo cabeamento estruturado e fibra óptica, para garantir velocidade e estabilidade em todos os seus equipamentos.</p>
+            </div>
+        </div>
     </div>
-    <p>Tecnologia e automação integradas para garantir eficiência, praticidade e inovação no seu dia a dia.</p>
-  </div>
 
-  <div id="cameras alarmes" class="section">
-    <h2>Câmeras de Segurança e Alarmes</h2>
-    <div style="display: flex; gap: 10px;">
-      <img src="Residencia.jpg" alt="cameras alarme" style="width: 50%; border-radius:10px;" />
-      <img src="Empresa.jpg" alt="cameras alarme" style="width: 50%; border-radius:10px;" />
+    <div id="comandos" class="section">
+        <h2><i class="fas fa-home service-icon"></i> Tecnologia e Automação Residencial/Empresarial</h2>
+        <div class="section-content">
+            <div class="text-content">
+                <p>Transforme seu espaço em um ambiente inteligente. Nossas soluções de **automação** integram comandos de voz, iluminação, climatização e segurança, oferecendo **eficiência, praticidade** e economia no seu dia a dia.</p>
+            </div>
+            <div class="image-gallery">
+                <img src="Tecnologia.jpg" alt="Tecnologia" />
+                <img src="Automação.png" alt="Automação" />
+            </div>
+        </div>
     </div>
-    <p>Segurança personalizada com câmeras estratégicas e alarmes avançados para proteger sua família e patrimônio.</p>
-  </div>
 
-  <div id="contato" class="section">
-    <h2>Contato</h2>
-    <div style="display: flex; gap: 10px;">
-      <img src="Cartão de Visita.png" alt="contato" style="width: 50%; border-radius:10px;" />
-      <img src="EvoluD.jpg" alt="contato" style="width: 50%; border-radius:10px;" />
+    <div id="cameras" class="section">
+        <h2><i class="fas fa-video service-icon"></i> Câmeras de Segurança e Alarmes</h2>
+        <div class="section-content">
+            <div class="image-gallery">
+                <img src="Residencia.jpg" alt="Câmeras para Residência" />
+                <img src="Empresa.jpg" alt="Câmeras para Empresa" />
+            </div>
+            <div class="text-content">
+                <p>Proteção 24h. Oferecemos sistemas de vigilância e alarmes personalizados, com monitoramento de alta definição e acesso remoto. **Sua família e seu patrimônio seguros, sem preocupações.**</p>
+            </div>
+        </div>
     </div>
-    <p>Não espere o problema acontecer — cada minuto sem proteção é um risco. Ligue agora e garanta sua tranquilidade.</p>
-  </div>
 
-  <footer>
-    <p>© 2025 - EgonTech / Serviços de TI e Automação</p>
-  </footer>
- 
+    <div id="contato" class="section">
+        <h2>Pronto para Começar?</h2>
+        <p style="font-size: 1.2em; font-weight: bold;">Não espere o problema acontecer. Invista em tranquilidade e eficiência hoje.</p>
+        <p>Ligue agora ou envie uma mensagem para garantir a solução tecnológica que você precisa.</p>
+        
+        <div style="margin-top: 30px;">
+            <a href="https://wa.me/5519974158351" class="cta-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> Inicie Seu Projeto por WhatsApp!
+            </a>
+        </div>
+    </div>
 
-<div id="adContainer" style="display:none; margin-top:10px;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-5744146775168007"
-       data-ad-slot="9073975263"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  <p>"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5744146775168007"
-     crossorigin="anonymous"</p>
-</div>
+    <footer>
+        <p>© 2025 - EgonTech | Serviços de TI, Segurança e Automação | Localização: Serra Negra - SP (ou sua região)</p>
+    </footer>
+    
+    <div class="float-buttons">
+        <a href="#hero" title="Voltar ao início"><i class="fas fa-arrow-up"></i></a>
+        <a href="https://wa.me/5519974158351" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.instagram.com/egonluizti01/" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
 
-<i class="fas fa-ad" id="toggleAd" style="font-size:40px; color:#ff9900; cursor:pointer;"></i>
-
-
-
-
-  <!-- Botões flutuantes -->
-  <div class="float-buttons">
-    <a href="#" title="Voltar ao início"><i class="fas fa-arrow-up"></i></a>
-    <a href="https://wa.me/5519974158351" class="whatsapp" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://www.instagram.com/egonluizti01/" class="instagram" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-
-  </div>
+    <div id="adContainer" style="display:none; margin-top:10px;">
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5744146775168007"
+            data-ad-slot="9073975263"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5744146775168007"
+        crossorigin="anonymous"></script>
 </body>
 </html>
 
